@@ -6,7 +6,7 @@ import os
 import exifread
 
 imagesPath = os.path.relpath("static/images")
-imagePrefix = "img"
+imagePrefix = "image"
 
 DATA_INTERVAL = 5 #minutes
 IMAGE_INTERVAL = 10 #minutes
