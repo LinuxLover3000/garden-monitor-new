@@ -37,12 +37,9 @@ class Image():
     def getImages(path, prefix): #returns array of files if prefix matches
         contents = os.listdir(path)
         Image.images = [Image(os.path.join(path, image)) for image in contents if image[:len(prefix)] == prefix]
-    def getMostRecent(): #sort list by datetime
-        dates = [image.datetime for image in Image.images]
-        mostRecentDate = max(dates)
-        mostRecentImage = Image.images[dates.index(mostRecentDate)]
-        return mostRecentImage
-        #return Image.images[len(Image.images)]
+    def getMostRecent():
+        Image.images.sort(key=lambda image: image.datetime)
+        return Image.images[-1]
 
 class Data(db.Model):    
     humidity = db.Column(db.Float, nullable = False)

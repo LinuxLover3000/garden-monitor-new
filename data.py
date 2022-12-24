@@ -11,7 +11,7 @@ picture_path = "/home/pi/Desktop/garden-monitor-new/static/images"
 database_path = "/home/pi/Desktop/garden-monitor-new/data.db"
 image_name = "image"
 
-get_number = lambda path: os.path.splitext(os.path.split(path)[1])[0][len(image_name):]
+get_number = lambda path: int(os.path.splitext(os.path.split(path)[1])[0][len(image_name):])
 #get number of image file then add 1
 #counter = int(os.path.splitext(max(os.listdir(picture_path), key=get_number))[0][len(image_name):]) + 1
 sensor = adafruit_dht.DHT11(board.D4)
@@ -32,9 +32,9 @@ def initialize_db():
 def store_picture(path):
 	if os.path.exists(path) == False:
 		os.mkdir(path)
-
+	
 	counter = int(os.path.splitext(max(os.listdir(picture_path), key=get_number))[0][len(image_name):]) + 1
-
+	
 	filename = path + "/" + image_name + (str)(counter) + ".jpg"
 
 	data = "fswebcam " + filename
